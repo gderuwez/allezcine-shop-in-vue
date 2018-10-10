@@ -20,7 +20,7 @@
       </div>
     </div>
     <hr/>
-    <ShopDisplay v-bind:display="toggle" v-bind:filtering="isActive"/>
+    <ShopDisplay v-bind:display="toggle" v-bind:filtering="isActive" v-bind:searchterm="searchterm"/>
   </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
   name:'ShopBody',
   components: {
     ShopDisplay
+  },
+  props: {
+    searchterm: String
   },
   data: function() {
     return {

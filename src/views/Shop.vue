@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
-    <Header title='Shop'></Header>
-    <ShopBody />
+    <Header title='Shop'  @test="testing"></Header>
+    <ShopBody v-bind:searchterm="searchterm"/>
     <FooterBar/>
   </div>
 </template>
@@ -17,6 +17,16 @@ export default {
     Header,
     FooterBar,
     ShopBody
+  },
+  data: function () {
+    return {
+      searchterm: "",
+    }
+  },
+  methods: {
+    testing: function (value) {
+      this.searchterm = value;
+    }
   }
 }
 </script>

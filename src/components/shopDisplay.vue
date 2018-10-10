@@ -39,7 +39,8 @@ export default {
   name: 'ShopDisplay',
   props: {
     display : Boolean,
-    filtering: String
+    filtering: String,
+    searchterm: String
   },
   data: function () {
     return {
@@ -48,7 +49,11 @@ export default {
   },
   computed: {
     mug: function () {
-      if (this.filtering === 'All') {
+      if (this.searchterm) {
+        var filtered = this.searchterm.trim().toLowerCase();
+        return this.users.filter(item => item['description'].toLowerCase().indexOf(filtered) !== -1);
+      }
+      else if (this.filtering === 'All') {
         return this.users;
       }
       else {

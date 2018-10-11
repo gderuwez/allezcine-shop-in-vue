@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Header title='Shop'  @test="testing"></Header>
-    <ShopBody v-bind:searchterm="searchterm"/>
+    <ShopBody v-bind:searchterm="searchterm" @basketContent="basketContent"/>
     <FooterBar/>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
   methods: {
     testing: function (value) {
       this.searchterm = value;
+    },
+    basketContent: function (value) {
+      this.$emit('basketContent', value);
     }
   }
 }

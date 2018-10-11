@@ -20,7 +20,7 @@
       </div>
     </div>
     <hr/>
-    <ShopDisplay v-bind:display="toggle" v-bind:filtering="isActive" v-bind:searchterm="searchterm"/>
+    <ShopDisplay v-bind:display="toggle" v-bind:filtering="isActive" v-bind:searchterm="searchterm" @basketContent="basketContent"/>
   </div>
 </template>
 
@@ -47,6 +47,9 @@ export default {
     },
     toggling: function() {
       this.toggle = !this.toggle;
+    },
+    basketContent: function (value) {
+      this.$emit('basketContent', value);
     }
   }
 }

@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <ConfirmationModal v-bind:itemRef="itemRef"/>
+    <ConfirmationModal v-bind:itemRef="itemRef" @basketContent="basketContent"/>
   </div>
 </template>
 
@@ -58,6 +58,9 @@ export default {
   methods: {
     test: function (value) {
       this.itemRef = value;
+    },
+    basketContent: function (value) {
+      this.$emit('basketContent', value);
     }
   },
   computed: {

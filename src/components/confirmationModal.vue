@@ -11,10 +11,12 @@
           </div>
           <div class="modal-body">
             <img style="height:auto;width:25vh;" v-bind:src="require('../assets/images/' + item['image'])" alt="Card image cap">
+            <label for="numberToOrder">How many would you like to order ?</label>
+            <input class="form-control" id="numberToOrder" type="number" name="number" value="0" v-model="numberInput">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" v-on:click="itemConfirmed(item['.key'])">Confirm</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="itemConfirmed(item['.key'])">Confirm</button>
           </div>
         </div>
       </div>
@@ -33,16 +35,21 @@ export default {
   data: function () {
     return {
       users: {},
-      itemInBasket: []
+      numberInput:'',
+      numberOfItem: '',
+      previousnumberOfItem: '',
+      itemInBasket: [],
+      previousItemInBasket: ''
     }
   },
   methods: {
     //need to find ways to add quantities later. Array concat ? Object ?
-    //need to find a way to close the modal on confirm
     itemConfirmed: function (value) {
-      this.itemInBasket.push(value);
-      console.log(this.itemInBasket);
-    }
+      var test = [value, this.numberInput];
+      this.itemInBasket = test;
+      //console.log(this.itemInBasket);
+      this.$emit('basketContent', this.itemInBasket);
+    },
   },
   computed: {
     itemToConfirm: function () {

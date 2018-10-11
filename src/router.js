@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Shop from './views/Shop.vue'
 import Basket from './views/Basket.vue'
+import Contact from './views/Contact.vue'
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ export default new Router({
     {
       path: '/contact',
       name: 'contact',
-      component: About
+      component: Contact
     },
     {
       path: '/panier',

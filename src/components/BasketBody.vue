@@ -44,20 +44,20 @@
     <hr/>
     <h5>Options supplémentaires</h5>
     <div class="">
-      <label for="">Cadeau</label>
-      <input type="checkbox" v-model="supplements" name="" value="2">
+      <label for="">Cadeau </label>
+      <input class="ml-3" type="checkbox" v-model="supplements" name="" value="2">
     </div>
     <div class="">
       <label for="">Prioritaire</label>
-      <input type="checkbox" v-model="supplements" name="" value="6">
+      <input class="ml-3" type="checkbox" v-model="supplements " name="" value="6">
     </div>
     <div class="">
       <label for="">petit mot</label>
-      <input type="checkbox" v-model="supplements" name="" value="1">
+      <input class="ml-3" type="checkbox" v-model="supplements " name="" value="1">
     </div>
     <div class="">
-      <label for="">Membership</label>
-      <input type="checkbox" name="" value="">
+      <label for="">Membership </label>
+      <input  class="ml-3" type="checkbox" name="" value="">
     </div>
     <hr/>
     <p><strong>Frais de livraison</strong> : {{FraisLivraison}}</p>
@@ -67,8 +67,7 @@
     <hr/>
     <p><strong>Total Hors Tva</strong> : {{trueTotalHTVA}}</p>
     <p><strong>Total with Tva</strong> : {{trueTotal}}</p>
-    <button type="button" name="button" v-on:click="check">check</button>
-    <button class="btn btn-primary float-right mr-3" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
+    <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
   </div>
   </template>
 
@@ -91,10 +90,6 @@ export default {
       alert("Are you sure ?");
       this.$emit('basketEmpty', this.creditleft);
       this.$router.push({ name: 'home' });
-    },
-    check : function () {
-      console.log(this.totalTva);
-      console.log(this.credit);
     }
   },
   computed: {

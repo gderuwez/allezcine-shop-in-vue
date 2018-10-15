@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Header title='AllezCiné Shop'></Header>
+    <Header>
+      <span>ALLEZ</span>CINE!
+    </Header>
     <BestSellers></BestSellers>
     <FooterBar test/>
   </div>

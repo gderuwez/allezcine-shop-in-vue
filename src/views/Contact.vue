@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="">
-    <Header />
+    <Header>
+      Contact
+    </Header>
     <form method="post">
       <h3>Drop Us a Message</h3>
       <div class="row">

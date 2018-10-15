@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
-    <Header title='Shop'  @test="testing"></Header>
+    <Header @test="testing">
+      Shop
+    </Header>
     <ShopBody v-bind:searchterm="searchterm" @basketContent="basketContent"/>
     <FooterBar/>
   </div>

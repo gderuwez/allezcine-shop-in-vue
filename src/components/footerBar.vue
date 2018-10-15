@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-dark size">
+  <div class="container-fluid bg-black size">
     <div class="row justify-content-center">
       <div v-if="test" class="border col-4 justify-content-center">
         <div class="row align-items-center mt-4 ml-2">
@@ -83,5 +83,8 @@ a:active {
 }
 span {
   color: red;
+}
+.bg-black {
+  background-color: black;
 }
 </style>

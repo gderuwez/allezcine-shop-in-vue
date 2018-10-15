@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
-    <Header title='Shop'></Header>
+    <Header>
+      Basket
+    </Header>
     <BasketBody v-bind:basketContentProps="basketContentProps" @basketEmpty="basketEmpty" v-bind:credit="creditToProps"/>
     <FooterBar/>
   </div>

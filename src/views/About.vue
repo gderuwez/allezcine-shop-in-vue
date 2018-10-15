@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Header title="the about page"></Header>
+    <Header>
+      About
+    </Header>
     test text again
   </div>
 </template>

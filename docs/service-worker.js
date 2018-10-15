@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.0d7edc73a9bdbf4766221533228698d9.js"
+  "/allezcine-shop-in-vue/precache-manifest.24b044375ad79ead74cf044bf367c815.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "allezcine-shop-project"});

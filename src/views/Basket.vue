@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Header>
-      Basket
+      Panier
     </Header>
     <BasketBody v-bind:basketContentProps="basketContentProps" @basketEmpty="basketEmpty" v-bind:credit="creditToProps"/>
     <FooterBar/>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="mb-5 mt-2">
-    <div class="d-flex flex-wrap flex-column">
+    <div class="container-fluid">
       <div class="row ml-1">
         <div class="col-2">
           <h4>Your item(s)</h4>
@@ -42,36 +42,29 @@
       </div>
     </div>
     <hr/>
-    <h5>Options supplémentaires</h5>
-    <div class="">
-      <label for="">Cadeau 2€</label>
-      <input class="ml-3" type="checkbox" v-model="supplements" name="" value="2">
+    <h5 class="container-fluid">Choisissez vos suppléments</h5>
+    <div class="container-fluid">
+      <div class="row justify-content-between border" v-for="item in supplementsDisplay" v-on:click="toggleSup(item)" v-bind:class="{active : item.isActive, inactive : !item.isActive}">
+        <div class="col-2">
+          <p class="pl-3 Linen">{{item.name}}</p>
+        </div>
+        <div class="col-2 text-right pr-3">
+          <p class="mr-5 Linen">{{item.price}} €</p>
+        </div>
+      </div>
     </div>
-    <div class="">
-      <label for="">Prioritaire 6€</label>
-      <input class="ml-3" type="checkbox" v-model="supplements " name="" value="6">
+    <br />
+    <h5 class="container-fluid">Montants</h5>
+    <div class="container-fluid">
+      <div class="row border justify-content-between" v-for="item in MontantObject">
+        <div class="col-2">
+          <p class="pl-3"><strong>{{item.name}}</strong></p>
+        </div>
+        <div class="col-2 text-right pr-3">
+          <p class="mr-5">{{item.total}} €</p>
+        </div>
+      </div>
     </div>
-    <div class="">
-      <label for="">petit mot 1€</label>
-      <input class="ml-3" type="checkbox" v-model="supplements " name="" value="1">
-    </div>
-    <div class="">
-      <label for="">Membership -gratuit</label>
-      <input  class="ml-3" type="checkbox" name="" value="">
-    </div>
-    <div class="">
-      Montant des supplements : {{supplement}}  €
-    </div>
-    <hr/>
-    <p><strong>Frais de livraison</strong> : {{FraisLivraison}} €</p>
-    <hr/>
-    <hr/>
-    <p><strong>Credits Restant</strong> : {{credit}}  €</p>
-    <hr/>
-    <p><strong>Total des articles</strong> : {{totalArticles}} €</p>
-    <p><strong>Total des articles + Frais de livraisons</strong> : {{totalArticlesAndFrais}} €</p>
-    <p><strong>Total Hors Tva</strong> : {{trueTotalHTVA}} €</p>
-    <p><strong>Total with Tva</strong> : {{trueTotal}} €</p>
     <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
   </div>
   </template>
@@ -87,7 +80,28 @@ export default {
   },
   data: function () {
     return {
-      supplements: []
+      supplementsDisplay: [
+        {
+          name: "Cadeau",
+          price: 2,
+          isActive: false
+        },
+        {
+          name: "Prioritaire",
+          price: 6,
+          isActive: false
+        },
+        {
+          name: "petit mot",
+          price: 2,
+          isActive: false
+        },
+        {
+          name: "Membership",
+          price: 0,
+          isActive: false
+        }
+      ],
     }
   },
   methods: {
@@ -96,18 +110,46 @@ export default {
       this.$emit('basketEmpty', this.creditleft);
       this.$router.push({ name: 'home' });
     },
-    check : function () {
-      console.log(this.totalArticlesAndFrais);
+    toggleSup : function (item) {
+      item.isActive = !item.isActive;
     }
   },
   computed: {
-    supplement: function () {
-      var supplementsToCount = this.supplements;
-      var totalsupp = 0;
-      for (var j in supplementsToCount) {
-          totalsupp += parseInt(supplementsToCount[j]);
-      }
-      return totalsupp;
+    MontantObject: function () {
+      return [
+        {
+          name: "Montant des supplements",
+          total: this.supplement,
+        },
+        {
+          name: "Total des articles HTVA",
+          total: this.ArticlesHTVA,
+        },
+        {
+          name: "Total des articles TTC",
+          total: this.ArticlesTVA,
+        },
+        {
+          name: "Frais de livraison",
+          total: this.FraisLivraison,
+        },
+        {
+          name: "Total a payer",
+          total: this.TotalBeforeCredit,
+        },
+        {
+          name: "Credits",
+          total: this.credit.toFixed(2),
+        },
+        {
+          name: "Total a payer avec credit",
+          total: this.TotalWithCredit,
+        },
+        {
+          name: "Credits Restant après payement",
+          total: this.creditleft,
+        },
+      ];
     },
     itemType: function () {
       var test = this.basketContentProps;
@@ -116,7 +158,7 @@ export default {
       for (var j in test) {
         for (var k in test2) {
           if (test[j][0] == test2[k][".key"]) {
-            test2[k].quantity = test[j][1];
+            test2[k].quantity = parseInt(test[j][1]);
             test2[k]["Type"] === "Poster" ? test2[k].tva = 5.5 : test2[k].tva = 19.6;
             result.push(test2[k]);
           }
@@ -124,83 +166,56 @@ export default {
       }
       return result;
     },
-    itemNumber: function () {
-      var test = this.basketContentProps;
-      var newArray = [];
-      for (var i in test) {
-        newArray.push(test[i][1])
-      }
-      return newArray;
-    },
-    totalTva : function () {
+    ArticlesHTVA : function () {
       var totalCount = 0;
-      var totalsupp = this.supplement;
-      var amountOfItems = this.itemNumber;
       for (var i in this.itemType) {
-        totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i] + ((this.itemType[i]['tva'] * parseInt(this.itemType[i]["price"]) * amountOfItems[i])/100)  );
-      }
-      return totalsupp += parseFloat(totalCount.toFixed(2));
-    },
-    totalArticles : function () {
-      var totalCount = 0;
-      var amountOfItems = this.itemNumber;
-      for (var i in this.itemType) {
-        totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i]);
+        totalCount += (parseFloat(this.itemType[i]["price"]) * this.itemType[i]["quantity"]);
       }
       return totalCount.toFixed(2);
     },
-    totalArticlesAndFrais : function () {
-      var articles = this.totalArticles;
-      var frais = this.FraisLivraison;
-      var total = parseFloat(articles) + parseFloat(frais);
-      if (total == undefined) {
-        return 0;
-      }
-      else {
-        return total.toFixed(2);
-      }
-    },
-    totalHorsTva : function () {
+    ArticlesTVA : function () {
       var totalCount = 0;
-      var totalsupp = this.supplement;
-      var amountOfItems = this.itemNumber;
       for (var i in this.itemType) {
-        totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i]);
+        totalCount += (parseFloat(this.itemType[i]["price"]) * this.itemType[i]["quantity"] + ((this.itemType[i]['tva'] * parseFloat(this.itemType[i]["price"]) * this.itemType[i]["quantity"])/100)  );
       }
-      return totalsupp + totalCount;
+      return totalCount.toFixed(2);
+    },
+    supplement: function () {
+      var total = 0;
+      this.supplementsDisplay.forEach(function(item){
+        if (item.isActive){
+          total+= item.price;
+        }
+      });
+      return total.toFixed(2);
+    },
+    totalHTVA : function () {
+      return parseFloat(this.ArticlesHTVA) + parseFloat(this.supplement);
+    },
+    totalTTC : function () {
+      return parseFloat(this.ArticlesTVA) + parseFloat(this.supplement);
     },
     FraisLivraison: function () {
-      var check = this.totalTva;
+      var check = this.ArticlesHTVA;
       var Frais = 0;
       if (check < 15) {Frais = 10;}
       else if (15 >= check <= 31) {Frais = 7;}
       else if (check > 31 ){Frais = 0;}
-      return Frais;
+      return parseFloat(Frais).toFixed(2);
     },
-    trueTotal : function () {
-      var display;
-      var result = (this.totalTva + this.FraisLivraison) - this.credit;
-      if (result < 0) {
-        display = 0;
+    TotalBeforeCredit : function () {
+      return (parseFloat(this.totalTTC) + parseFloat(this.FraisLivraison)).toFixed(2);
+    },
+    TotalWithCredit : function () {
+      if ((parseFloat(this.TotalBeforeCredit) - parseFloat(this.credit)) <= 0) {
+        return (0).toFixed(2);
       }
       else {
-        display = result;
+        return (parseFloat(this.TotalBeforeCredit) - parseFloat(this.credit)).toFixed(2);
       }
-      return display.toFixed(2);
-    },
-    trueTotalHTVA: function () {
-      var display;
-      var result = (this.totalHorsTva + this.FraisLivraison) - this.credit;
-      if (result < 0) {
-        display = 0;
-      }
-      else {
-        display = result;
-      }
-      return display.toFixed(2);
     },
     creditleft: function () {
-      var calc = this.credit - (this.totalHorsTva + this.FraisLivraison);
+      var calc = parseFloat(this.credit) - parseFloat(this.TotalBeforeCredit);
       if (calc <= 0) {
         return 0;
       }
@@ -216,4 +231,13 @@ export default {
 </script>
 
 <style lang="css">
+  .active {
+    background-color: MediumSeaGreen;
+  }
+  .inactive {
+    background-color: Tomato;
+  }
+  .Linen {
+    color: Linen;
+  }
 </style>

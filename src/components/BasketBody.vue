@@ -15,7 +15,7 @@
           <h4>Quantity</h4>
         </div>
         <div class="col-3">
-          <h4>Montant tva</h4>
+          <h4>Total</h4>
         </div>
       </div>
       <div class="row ml-1" v-for="item in itemType" v-on:click="test(item['.key'])">
@@ -36,13 +36,22 @@
         <div class="col-2 align-self-center">
           <p class="float-right pr-5">{{item['quantity']}}</p>
         </div>
-        <div class="col-2 align-self-center">
-          <p class="float-right pr-5">{{item['tva']}}%</p>
+        <div class="col-3 align-self-center">
+          <p class="float-right pr-5">{{item['total']}} €</p>
+        </div>
+      </div>
+      <hr />
+      <div class="row border justify-content-between" v-for="item in MontantObject2">
+        <div class="col-2">
+          <p class="pl-3"><strong>{{item.name}}</strong></p>
+        </div>
+        <div class="col-2 text-right pr-3">
+          <p class="mr-5">{{item.total}} €</p>
         </div>
       </div>
     </div>
-    <hr/>
-    <h5 class="container-fluid">Choisissez vos suppléments</h5>
+
+    <h5 class="container-fluid mt-5">Choisissez vos suppléments</h5>
     <div class="container-fluid">
       <div class="row justify-content-between border" v-for="item in supplementsDisplay" v-on:click="toggleSup(item)" v-bind:class="{active : item.isActive, inactive : !item.isActive}">
         <div class="col-2">
@@ -52,9 +61,18 @@
           <p class="mr-5 Linen">{{item.price}} €</p>
         </div>
       </div>
+      <hr />
+      <div class="row border justify-content-between">
+        <div class="col-2">
+          <p class="pl-3"><strong>Total des suppléments</strong></p>
+        </div>
+        <div class="col-2 text-right pr-3">
+          <p class="mr-5">{{supplement}} €</p>
+        </div>
+      </div>
     </div>
-    <br />
-    <h5 class="container-fluid">Montants</h5>
+
+    <h5 class="container-fluid mt-5">Montants</h5>
     <div class="container-fluid">
       <div class="row border justify-content-between" v-for="item in MontantObject">
         <div class="col-2">
@@ -66,6 +84,7 @@
       </div>
     </div>
     <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
+    <button type="button" name="button" v-on:click="check">check</button>
   </div>
   </template>
 
@@ -112,15 +131,14 @@ export default {
     },
     toggleSup : function (item) {
       item.isActive = !item.isActive;
+    },
+    check : function () {
+      console.log(this.itemType);
     }
   },
   computed: {
-    MontantObject: function () {
+    MontantObject2: function () {
       return [
-        {
-          name: "Montant des supplements",
-          total: this.supplement,
-        },
         {
           name: "Total des articles HTVA",
           total: this.ArticlesHTVA,
@@ -128,7 +146,11 @@ export default {
         {
           name: "Total des articles TTC",
           total: this.ArticlesTVA,
-        },
+        }
+      ]
+    },
+    MontantObject: function () {
+      return [
         {
           name: "Frais de livraison",
           total: this.FraisLivraison,
@@ -160,6 +182,7 @@ export default {
           if (test[j][0] == test2[k][".key"]) {
             test2[k].quantity = parseInt(test[j][1]);
             test2[k]["Type"] === "Poster" ? test2[k].tva = 5.5 : test2[k].tva = 19.6;
+            test2[k].total = ((parseFloat(test2[k].price) + ((parseFloat(test2[k].price) * parseFloat(test2[k].tva)) /100)) * parseFloat(test2[k].quantity)).toFixed(2);
             result.push(test2[k]);
           }
         }

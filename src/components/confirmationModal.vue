@@ -11,8 +11,12 @@
           </div>
           <div class="modal-body">
             <img style="height:auto;width:25vh;" v-bind:src="require('../assets/images/' + item['image'])" alt="Card image cap">
-            <label for="numberToOrder">How many would you like to order ?</label>
-            <input class="form-control" id="numberToOrder" type="number" name="number" value="0" v-model="numberInput">
+            <div class="form-group row">
+              <label for="numberToOrder" class="col-form-label col-9">How many would you like to order ?</label>
+              <div class="col-3">
+                <input class="form-control" id="numberToOrder" type="number" name="number" value="0" v-model="numberInput">
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -84,7 +84,6 @@
       </div>
     </div>
     <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
-    <button type="button" name="button" v-on:click="check">check</button>
   </div>
   </template>
 
@@ -131,9 +130,6 @@ export default {
     },
     toggleSup : function (item) {
       item.isActive = !item.isActive;
-    },
-    check : function () {
-      console.log(this.itemType);
     }
   },
   computed: {

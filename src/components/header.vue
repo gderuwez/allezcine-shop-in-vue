@@ -1,14 +1,10 @@
 <template lang="html">
     <nav class="navbar navbar-expand-md navbar-dark bg-black">
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         <div class="container-fluid">
-
           <div class="row">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item" v-bind:class="{active : isActive === 'panier'}">
@@ -16,13 +12,10 @@
               </li>
             </ul>
           </div>
-
           <div class="row justify-content-center">
             <h1><a class="navbar-brand titleSize" href="#"><slot></slot></a></h1>
           </div>
-
           <div class="row justify-content-between">
-
             <div class="col-4">
               <ul class="navbar-nav mb-2 mt-2">
                 <li class="nav-item mr-5 border linkSize" v-bind:class="{active : isActive === 'home'}">
@@ -36,7 +29,6 @@
                 </li>
               </ul>
             </div>
-
             <div class="col-2">
               <div class="input-group mb-2 mt-2">
                 <input class="form-control" type="search" v-model="searchterm" v-on:input="testfunction()" placeholder="Search" aria-label="Search">
@@ -45,13 +37,9 @@
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </nav>
 </template>
 

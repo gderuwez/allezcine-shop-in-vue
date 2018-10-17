@@ -44,29 +44,34 @@
     <hr/>
     <h5>Options supplémentaires</h5>
     <div class="">
-      <label for="">Cadeau </label>
+      <label for="">Cadeau 2€</label>
       <input class="ml-3" type="checkbox" v-model="supplements" name="" value="2">
     </div>
     <div class="">
-      <label for="">Prioritaire</label>
+      <label for="">Prioritaire 6€</label>
       <input class="ml-3" type="checkbox" v-model="supplements " name="" value="6">
     </div>
     <div class="">
-      <label for="">petit mot</label>
+      <label for="">petit mot 1€</label>
       <input class="ml-3" type="checkbox" v-model="supplements " name="" value="1">
     </div>
     <div class="">
-      <label for="">Membership </label>
+      <label for="">Membership -gratuit</label>
       <input  class="ml-3" type="checkbox" name="" value="">
     </div>
+    <div class="">
+      Montant des supplements : {{supplement}}  €
+    </div>
     <hr/>
-    <p><strong>Frais de livraison</strong> : {{FraisLivraison}}</p>
+    <p><strong>Frais de livraison</strong> : {{FraisLivraison}} €</p>
     <hr/>
     <hr/>
-    <p><strong>Credits</strong> : {{credit}}</p>
+    <p><strong>Credits Restant</strong> : {{credit}}  €</p>
     <hr/>
-    <p><strong>Total Hors Tva</strong> : {{trueTotalHTVA}}</p>
-    <p><strong>Total with Tva</strong> : {{trueTotal}}</p>
+    <p><strong>Total des articles</strong> : {{totalArticles}} €</p>
+    <p><strong>Total des articles + Frais de livraisons</strong> : {{totalArticlesAndFrais}} €</p>
+    <p><strong>Total Hors Tva</strong> : {{trueTotalHTVA}} €</p>
+    <p><strong>Total with Tva</strong> : {{trueTotal}} €</p>
     <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="emptyBasket">Confirm order</button>
   </div>
   </template>
@@ -90,9 +95,20 @@ export default {
       alert("Are you sure ?");
       this.$emit('basketEmpty', this.creditleft);
       this.$router.push({ name: 'home' });
+    },
+    check : function () {
+      console.log(this.totalArticlesAndFrais);
     }
   },
   computed: {
+    supplement: function () {
+      var supplementsToCount = this.supplements;
+      var totalsupp = 0;
+      for (var j in supplementsToCount) {
+          totalsupp += parseInt(supplementsToCount[j]);
+      }
+      return totalsupp;
+    },
     itemType: function () {
       var test = this.basketContentProps;
       var test2 = this.users
@@ -118,27 +134,38 @@ export default {
     },
     totalTva : function () {
       var totalCount = 0;
-      var totalsupp = 0;
+      var totalsupp = this.supplement;
       var amountOfItems = this.itemNumber;
       for (var i in this.itemType) {
         totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i] + ((this.itemType[i]['tva'] * parseInt(this.itemType[i]["price"]) * amountOfItems[i])/100)  );
       }
-      var supplementsToCount = this.supplements;
-      for (var j in supplementsToCount) {
-          totalsupp += parseInt(supplementsToCount[j]);
-      }
       return totalsupp += parseFloat(totalCount.toFixed(2));
     },
-    totalHorsTva : function () {
+    totalArticles : function () {
       var totalCount = 0;
-      var totalsupp = 0;
       var amountOfItems = this.itemNumber;
       for (var i in this.itemType) {
         totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i]);
       }
-      var supplementsToCount = this.supplements;
-      for (var j in supplementsToCount) {
-          totalsupp += parseInt(supplementsToCount[j]);
+      return totalCount.toFixed(2);
+    },
+    totalArticlesAndFrais : function () {
+      var articles = this.totalArticles;
+      var frais = this.FraisLivraison;
+      var total = parseFloat(articles) + parseFloat(frais);
+      if (total == undefined) {
+        return 0;
+      }
+      else {
+        return total.toFixed(2);
+      }
+    },
+    totalHorsTva : function () {
+      var totalCount = 0;
+      var totalsupp = this.supplement;
+      var amountOfItems = this.itemNumber;
+      for (var i in this.itemType) {
+        totalCount += (parseInt(this.itemType[i]["price"]) * amountOfItems[i]);
       }
       return totalsupp + totalCount;
     },
@@ -157,9 +184,9 @@ export default {
         display = 0;
       }
       else {
-        display = "yup";
+        display = result;
       }
-      return display;
+      return display.toFixed(2);
     },
     trueTotalHTVA: function () {
       var display;
@@ -168,12 +195,18 @@ export default {
         display = 0;
       }
       else {
-        display = "nop";
+        display = result;
       }
-      return display;
+      return display.toFixed(2);
     },
     creditleft: function () {
-      return this.credit - (this.totalHorsTva + this.FraisLivraison);
+      var calc = this.credit - (this.totalHorsTva + this.FraisLivraison);
+      if (calc <= 0) {
+        return 0;
+      }
+      else {
+        return calc.toFixed(2);
+      }
     }
   },
   firebase: {

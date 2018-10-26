@@ -19,7 +19,7 @@
         <div class="row justify-content-center mt-2">
           <div class="btn-group">
             <button class="btn btn-secondary defaultColor" type="button" name="button"><a class="defaultColor" href="https://gderuwez.github.io/frontend-AllezCine/"><span>ALLEZ</span>CINE</a></button>
-            <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/">Accueil</router-link></button>
+            <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/">Home</router-link></button>
             <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/shop">Shop</router-link></button>
             <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/contact">Contact</router-link></button>
           </div>

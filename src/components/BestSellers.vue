@@ -3,7 +3,7 @@
     <TitleWithVerticalBar content='Les + vendus' />
     <div class="ml-5 mr-5">
       <swiper :options="swiperOption" >
-        <swiper-slide v-for="item in users">
+        <swiper-slide :key="index" v-for="(item, index) in users">
           <div class="card" style="width: 18rem;">
             <router-link to="/shop"><img class="card-img-top" v-bind:src="require('../assets/images/' + item['image'])" alt="Card image cap"></router-link>
           </div>
@@ -18,10 +18,10 @@
     <div class="container-fluid border">
       <div class="row">
         <div class="col-2"></div>
-        <Services title='Cadeau' content='la facture ne sera pas livrée dans le colis et les produits sont emballés.' />
-        <Services title='Prioritaire' content='le colis sera livré dans les 24 heures.' />
-        <Services title='Petit mot' content='un petit mot sera joint dans le colis' />
-        <Services title='Member ship' content="permet d'obtenir une réduction sur la prochaine commande à hauteur de 10%." />
+        <Services title='Cadeau' content='The facture will not be delivered with the package and the products will be individually packaged.' />
+        <Services title='Prioritaire' content='The package will be delivered within 24 hours.' />
+        <Services title='Petit mot' content='A message will be included with the package.' />
+        <Services title='Member ship' content="Allow you to get a 10% reduction on your next purchase." />
       </div>
     </div>
   </div>

@@ -29,7 +29,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <textarea v-model="Message" v-bind:class="{'border border-warning' : isMessageEmpty, 'border border-success' : !isMessageEmpty}" name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-            <p v-if="isMessageEmpty">Enter A message</p>
+            <p v-if="isMessageEmpty">Enter a message</p>
           </div>
         </div>
       </div>

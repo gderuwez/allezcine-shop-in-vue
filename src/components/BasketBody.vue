@@ -19,7 +19,7 @@
             <h4 class="float-right pr-5">Total</h4>
           </div>
           <div class="col-2 align-self-center">
-            <h4 class="float-right pr-5">Total TTC</h4>
+            <h4 class="float-right pr-5">Total with taxes</h4>
           </div>
         </div>
         <div class="row ml-1" v-for="item in itemType" v-on:click="test(item['.key'])">
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <h5 class="container-fluid mt-5">Choisissez vos suppléments</h5>
+      <h5 class="container-fluid mt-5">Choose your extras</h5>
       <div class="container-fluid">
         <div class="row justify-content-between border" v-for="item in supplementsDisplay" v-on:click="toggleSup(item)" v-bind:class="{active : item.isActive, inactive : !item.isActive}">
           <div class="col-2">
@@ -71,7 +71,7 @@
         <hr />
         <div class="row border justify-content-between">
           <div class="col-2">
-            <p class="pl-3"><strong>Total des suppléments</strong></p>
+            <p class="pl-3"><strong>Extras' total</strong></p>
           </div>
           <div class="col-2 text-right pr-3">
             <p class="mr-5">{{supplement}} €</p>
@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <h5 class="container-fluid mt-5">Montants</h5>
+      <h5 class="container-fluid mt-5">Amounts</h5>
       <div class="container-fluid">
         <div class="row border justify-content-between" v-for="item in MontantObject">
           <div class="col-2">
@@ -90,11 +90,12 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-dark float-right mr-3 mb-5" type="button" name="button" v-on:click="confirmOrder">Confirm order</button>
+      <button class="btn btn-dark float-right mr-3 mb-5" type="button" name="button" v-on:click="confirmOrder">Confirm your order</button>
     </div>
   </div>
   <div v-else>
-    <p class="pl-3">Félicitations, votre commande n°:<span class="blacked" :key="item.index" v-for="(item, index) in aleatoire">{{item}}</span> d'un montant de {{MontantObject[1].total}} € a bien été prise en compte</p>
+    <p class="pl-3">Congratulation your command n°:<span class="blacked" :key="item.index" v-for="(item, index) in aleatoire">{{item}}</span> with a total of {{MontantObject[1].total}} € as been succesfully processed.</p>
+    <button class="btn btn-dark"type="button" name="button" v-on:click="emptyBasket">OK</button>
   </div>
 </template>
 
@@ -137,7 +138,6 @@ export default {
   },
   methods: {
     confirmOrder () {
-      alert("are you sure?");
       for (var i = 0; i < 6 ; i++) {
         let variable = Math.floor(Math.random() * 10);
         this.aleatoire.push(variable);
@@ -156,11 +156,11 @@ export default {
     MontantObject2() {
       return [
         {
-          name: "Total des articles HTVA",
+          name: "Total of articles without taxes",
           total: this.ArticlesHTVA,
         },
         {
-          name: "Total des articles TTC",
+          name: "Total of articles with taxes",
           total: this.ArticlesTVA,
         }
       ]
@@ -168,11 +168,11 @@ export default {
     MontantObject() {
       return [
         {
-          name: "Frais de livraison",
+          name: "Delivery expenses",
           total: this.FraisLivraison,
         },
         {
-          name: "Total a payer hors utilisation des crédits",
+          name: "Total to pay without using credits",
           total: this.TotalBeforeCredit,
         },
         {
@@ -180,11 +180,11 @@ export default {
           total: this.credit.toFixed(2),
         },
         {
-          name: "Total à payer après utilisation des crédits",
+          name: "Total to pay using credits",
           total: this.TotalWithCredit,
         },
         {
-          name: "Credits Restant après payement",
+          name: "Credits remaining after payement",
           total: this.creditleft,
         },
       ];
@@ -272,10 +272,10 @@ export default {
 
 <style lang="css">
   .active {
-    background-color: MediumSeaGreen;
+    background-color: #FD433F;
   }
   .inactive {
-    background-color: Tomato;
+    background-color: grey;
   }
   .Linen {
     color: Linen;

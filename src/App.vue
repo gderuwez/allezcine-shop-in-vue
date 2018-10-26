@@ -20,7 +20,7 @@ export default {
     },
     basketEmpty: function (value) {
       this.basketContentProps = [];
-      this.credit = value;
+      this.credit = parseFloat(value);
     },
   }
 }

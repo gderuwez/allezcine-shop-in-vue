@@ -95,7 +95,7 @@
   </div>
   <div v-else>
     <p class="pl-3">Congratulation your command n°:<span class="blacked" :key="item.index" v-for="(item, index) in aleatoire">{{item}}</span> with a total of {{MontantObject[1].total}} € as been succesfully processed.</p>
-    <button class="btn btn-dark"type="button" name="button" v-on:click="emptyBasket">OK</button>
+    <button class="btn btn-dark ml-3" type="button" name="button" v-on:click="emptyBasket">OK</button>
   </div>
 </template>
 

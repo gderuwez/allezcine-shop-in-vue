@@ -7,7 +7,7 @@
         <div class="container-fluid">
           <div class="row">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item" v-bind:class="{active : isActive === 'panier'}">
+              <li class="nav-item" v-bind:class="{active2 : isActive === 'panier'}">
                 <router-link class="nav-link" to="/panier" ><i class="fas fa-shopping-basket"></i></router-link>
               </li>
             </ul>

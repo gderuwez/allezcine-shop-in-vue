@@ -14,7 +14,7 @@
             <div class="form-group row">
               <label for="numberToOrder" class="col-form-label col-9">How many would you like to order ?</label>
               <div class="col-3">
-                <input class="form-control" id="numberToOrder" type="number" name="number" value="0" v-model="numberInput">
+                <input class="form-control" id="numberToOrder" type="number" name="number" min="0" v-model="numberInput">
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@ export default {
   data: function () {
     return {
       users: {},
-      numberInput:'',
+      numberInput: 0,
       numberOfItem: '',
       previousnumberOfItem: '',
       itemInBasket: [],
@@ -47,16 +47,14 @@ export default {
     }
   },
   methods: {
-    //need to find ways to add quantities later. Array concat ? Object ?
-    itemConfirmed: function (value) {
+    itemConfirmed(value) {
       var test = [value, this.numberInput];
       this.itemInBasket = test;
-      //console.log(this.itemInBasket);
       this.$emit('basketContent', this.itemInBasket);
     },
   },
   computed: {
-    itemToConfirm: function () {
+    itemToConfirm() {
       return this.users.filter(item => item['.key'] === this.itemRef);
     }
   },

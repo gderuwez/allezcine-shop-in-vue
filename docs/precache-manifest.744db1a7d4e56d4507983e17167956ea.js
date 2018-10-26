@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/allezcine-shop-in-vue/img/SW-Mug-03.b89d116c.png"
   },
   {
-    "revision": "cd3547a8c67f6c591b18",
-    "url": "/allezcine-shop-in-vue/js/app.a7c847c5.js"
+    "revision": "dc4128fb7b8afeecd32f",
+    "url": "/allezcine-shop-in-vue/js/app.bc54de59.js"
   },
   {
     "revision": "64923424e394cafe25a3",
@@ -64,7 +64,7 @@ self.__precacheManifest = [
     "url": "/allezcine-shop-in-vue/img/SW-Shirt-02.d0880d32.jpg"
   },
   {
-    "revision": "97cd03eb7176ed7852ab01afceda7cc7",
+    "revision": "8379f3cc604af116d9e81672d4586dd5",
     "url": "/allezcine-shop-in-vue/index.html"
   },
   {
@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/allezcine-shop-in-vue/favicon.png"
   },
   {
-    "revision": "cd3547a8c67f6c591b18",
-    "url": "/allezcine-shop-in-vue/css/app.57641960.css"
+    "revision": "dc4128fb7b8afeecd32f",
+    "url": "/allezcine-shop-in-vue/css/app.4f30f830.css"
   }
 ];

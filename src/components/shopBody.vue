@@ -3,10 +3,10 @@
     <div class="row justify-content-center">
       <div class="text-center mt-4">
         <div class="btn-group">
-          <button class="btn mr-4" v-bind:class="{ 'btn-primary': isActive === 'Mug' }" type="button" name="Mugs" v-on:click="makeActive('Mug')">Mugs</button>
-          <button class="btn mr-4" v-bind:class="{ 'btn-primary': isActive === 'Poster' }" type="button" name="Posters" v-on:click="makeActive('Poster')">Poster</button>
-          <button class="btn mr-4" v-bind:class="{ 'btn-primary': isActive === 'Tshirt' }" type="button" name="Tshirts" v-on:click="makeActive('Tshirt')">T-shirts</button>
-          <button class="btn" v-bind:class="{ 'btn-primary': isActive === 'All' }" type="button" name="All" v-on:click="makeActive('All')">All</button>
+          <button class="btn mr-4" v-bind:class="{ 'btn-custom2': isActive === 'Mug', 'btn-custom': isActive !== 'Mug' }" type="button" name="Mugs" v-on:click="makeActive('Mug')">Mugs</button>
+          <button class="btn mr-4" v-bind:class="{ 'btn-custom2': isActive === 'Poster', 'btn-custom': isActive !== 'Poster' }" type="button" name="Posters" v-on:click="makeActive('Poster')">Poster</button>
+          <button class="btn mr-4" v-bind:class="{ 'btn-custom2': isActive === 'Tshirt', 'btn-custom': isActive !== 'Tshirt' }" type="button" name="Tshirts" v-on:click="makeActive('Tshirt')">T-shirts</button>
+          <button class="btn" v-bind:class="{ 'btn-custom2': isActive === 'All', 'btn-custom': isActive !== 'All' }" type="button" name="All" v-on:click="makeActive('All')">All</button>
         </div>
       </div>
     </div>
@@ -56,4 +56,13 @@ export default {
 </script>
 
 <style lang="css">
+.btn-custom, .btn-custom2{
+  color: white;
+}
+.btn-custom {
+  background-color: #6F6F6F;
+}
+.btn-custom:hover, .btn-custom2 {
+  background-color: #FD433F;
+}
 </style>

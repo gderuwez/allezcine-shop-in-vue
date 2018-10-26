@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="clearfix">
-    <h1 class="ml-5 border float-left">{{content}}</h1><div class="border float-left verticalBar ml-2"></div>
+    <div class="border float-left verticalBar ml-5"></div><h1 class="ml-2 border float-left">{{content}}</h1>
   </div>
 </template>
 

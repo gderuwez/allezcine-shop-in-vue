@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <div class="d-flex flex-wrap" :class="{'flex-column' : display}">
-      <div v-if="display" class="row ml-1" v-for="item in filteredItem" v-on:click="test(item['.key'])" data-toggle="modal" data-target="#exampleModal">
+      <div v-if="display" class="row ml-1 mt-4" v-for="item in filteredItem" v-on:click="test(item['.key'])" data-toggle="modal" data-target="#exampleModal">
         <div class="col-3">
           <img style="height:auto;width:25vh;" v-bind:src="require('../assets/images/' + item['image'])" alt="Card image cap">
         </div>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div v-else class="col-6" data-toggle="modal" data-target="#exampleModal" v-on:click="test(item['.key'])">
-        <div class="row">
+        <div class="row mt-5">
           <div class="col-4">
             <img style="height:auto;width:25vh;" v-bind:src="require('../assets/images/' + item['image'])" alt="Card image cap">
           </div>

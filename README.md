@@ -1,6 +1,6 @@
 # Site AllezCine!-Shop
 - **Where ?** : [BeCode](https://becode.org/)
-- **When ?** : 08/10 - 15/10/2018
+- **When ?** : 08/10 - 17/10/2018
 - **Who ?** :
   - [Guillaume Deruwez](https://github.com/gderuwez) : Everything
 - **The app** : https://gderuwez.github.io/allezcine-shop-in-vue/#/

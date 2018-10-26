@@ -39,7 +39,7 @@
         </div>
       </div>
     </form>
-    <div class="fixed-bottom">
+    <div class="fixed-bottom mt-5">
       <FooterBar />
     </div>
   </div>

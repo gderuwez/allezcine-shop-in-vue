@@ -90,7 +90,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-right mr-3 mb-5" type="button" name="button" v-on:click="confirmOrder">Confirm order</button>
+      <button class="btn btn-dark float-right mr-3 mb-5" type="button" name="button" v-on:click="confirmOrder">Confirm order</button>
     </div>
   </div>
   <div v-else>

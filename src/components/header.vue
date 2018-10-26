@@ -8,24 +8,24 @@
           <div class="row">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item" v-bind:class="{active2 : isActive === 'panier'}">
-                <router-link class="nav-link" to="/panier" ><i class="fas fa-shopping-basket"></i></router-link>
+                <router-link class="nav-link faCusto" to="/panier" ><i class="faCusto fas fa-shopping-basket"></i></router-link>
               </li>
             </ul>
           </div>
           <div class="row justify-content-center">
-            <h1><a class="navbar-brand titleSize" href="#"><slot></slot></a></h1>
+            <h1><a class="navbar-brand textCusto titleSize" href="#"><slot></slot></a></h1>
           </div>
           <div class="row justify-content-between row-bg">
             <div class="col-4">
               <ul class="navbar-nav mb-2 mt-2">
                 <li class="nav-item mr-5 border-dark linkSize custom-bg" v-bind:class="{active2 : isActive === 'home'}">
-                  <router-link class="nav-link" to="/" >Home</router-link>
+                  <router-link class="nav-link textCusto" to="/" >Home</router-link>
                 </li>
                 <li class="nav-item mr-5 border-dark linkSize custom-bg" v-bind:class="{active2 : isActive === 'shop'}">
-                  <router-link class="nav-link" to="/shop" >Shop</router-link>
+                  <router-link class="nav-link textCusto" to="/shop" >Shop</router-link>
                 </li>
                 <li class="nav-item mr-5 border-dark linkSize custom-bg" v-bind:class="{active2 : isActive === 'contact'}">
-                  <router-link class="nav-link" to="/contact" >Contact</router-link>
+                  <router-link class="nav-link textCusto" to="/contact" >Contact</router-link>
                 </li>
               </ul>
             </div>
@@ -65,8 +65,17 @@
   color: white;
   background-color: black;
 }
+.custom-bg:hover, .active2:hover {
+  background-color: #616161;
+}
+.textCusto:hover {
+  color: white;
+}
+.faCusto:hover {
+  color: #616161;
+}
 .active2 {
-  background-color: #1E81CA;
+  background-color: #616161;
 }
 </style>
 

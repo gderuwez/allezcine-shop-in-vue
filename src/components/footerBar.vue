@@ -18,10 +18,10 @@
       <div class="col-8">
         <div class="row justify-content-center mt-2">
           <div class="btn-group">
-            <button class="btn btn-secondary" type="button" name="button"><a href="https://gderuwez.github.io/frontend-AllezCine/"><span>ALLEZ</span>CINE</a></button>
-            <button class="btn btn-secondary" type="button" name="button"><router-link class="nav-link" to="/">Accueil</router-link></button>
-            <button class="btn btn-secondary" type="button" name="button"><router-link class="nav-link" to="/shop">Shop</router-link></button>
-            <button class="btn btn-secondary" type="button" name="button"><router-link class="nav-link" to="/contact">Contact</router-link></button>
+            <button class="btn btn-secondary defaultColor" type="button" name="button"><a class="defaultColor" href="https://gderuwez.github.io/frontend-AllezCine/"><span>ALLEZ</span>CINE</a></button>
+            <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/">Accueil</router-link></button>
+            <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/shop">Shop</router-link></button>
+            <button class="btn btn-secondary defaultColor" type="button" name="button"><router-link class="nav-link defaultColor" to="/contact">Contact</router-link></button>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -80,6 +80,17 @@ a:visited {
 }
 a:active {
   color: white;
+}
+a:hover {
+  color:white;
+  text-decoration:
+}
+router-link:hover {
+  color:white;
+}
+.defaultColor:hover {
+  color:white;
+  text-decoration: none;
 }
 span {
   color: red;

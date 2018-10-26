@@ -180,7 +180,7 @@ export default {
           total: this.credit.toFixed(2),
         },
         {
-          name: "Total a payer en utilisant les crédit",
+          name: "Total à payer après utilisation des crédits",
           total: this.TotalWithCredit,
         },
         {

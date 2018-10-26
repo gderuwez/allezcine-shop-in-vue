@@ -3,7 +3,7 @@
     <Header>
       Contact
     </Header>
-    <form method="post">
+    <form method="post" class="container">
       <h3>Drop Us a Message</h3>
       <div class="row">
         <div class="col-md-6">
@@ -39,7 +39,9 @@
         </div>
       </div>
     </form>
-    <FooterBar />
+    <div class="fixed-bottom">
+      <FooterBar />
+    </div>
   </div>
 </template>
 
